@@ -11,15 +11,23 @@ def random_grid(y=5, x=5, pclear=0.7):
     heuristic = np.flipud(np.fliplr(heuristic))
     return grid, heuristic
 
+def print_grid(grid):
+    grid_str = [[str(c) for c in r] for r in grid]
+    maxw = max([len(c) for r in grid_str for c in r])
+    fmt = ' {{:{:d}s}}'.format(maxw)
+    for r in grid_str:
+        print('[', end='')
+        for c in r:
+            print(fmt.format(c), end='')
+        print(' ]')
+    print()
 
 def main():
     grid, heuristic = random_grid(randint(5,20),randint(5,20))
     print('heuristic=')
-    for row in heuristic:
-        print(row)
+    print_grid(heuristic)
     print('grid=')
-    for row in grid:
-        print(row)
+    print_grid(grid)
 
 if __name__ == '__main__':
     main()
